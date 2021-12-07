@@ -47,10 +47,10 @@ function Player() {
       .getMyCurrentPlaybackState()
       .then((data) => {
         if (data.body?.is_playing) {
-          spotifyApi.pause();
+          spotifyApi.pause().catch((err) => console.log(err));
           setIsPlaying(false);
         } else {
-          spotifyApi.play();
+          spotifyApi.play().catch((err) => console.log(err));
           setIsPlaying(true);
         }
       })
@@ -101,7 +101,9 @@ function Player() {
       <div className="flex items-center justify-evenly">
         <SwitchHorizontalIcon className="button" />
         <RewindIcon
-          onClick={() => spotifyApi.skipToPrevious()} //-- the API is not working
+          onClick={() =>
+            spotifyApi.skipToPrevious().catch((err) => console.log(err))
+          } //-- the API is not working
           className="button"
         />
         {isPlaying ? (
@@ -111,7 +113,9 @@ function Player() {
         )}
 
         <FastForwardIcon
-          onClick={() => spotifyApi.skipToNext()} //-- the API is not working
+          onClick={() =>
+            spotifyApi.skipToNext().catch((err) => console.log(err))
+          } //-- the API is not working
           className="button"
         />
         <ReplyIcon className="button" />
