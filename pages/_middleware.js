@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 export async function middleware(req) {
   // Token will exist if user is logged in
   const token = await getToken({ req, secret: process.env.JWT_SECRET });
+  console.log("Token >>> ", token);
 
   const { pathname } = req.nextUrl;
   // Allow the requests if the following is true...
