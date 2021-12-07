@@ -6,9 +6,10 @@ export async function middleware(req) {
   const token = await getToken({
     req,
     secret: process.env.JWT_SECRET,
-    encryption: true,
+    raw: false,
+    secureCookie: true,
   });
-  console.log("req >>> ", req);
+  console.log("token >>> ", token);
 
   const { pathname } = req.nextUrl;
   // Allow the requests if the following is true...
